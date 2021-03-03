@@ -35,7 +35,7 @@ RUN pecl install memcached-3.1.5
 RUN docker-php-ext-enable memcached
 
 # mcrypt
-RUN pecl install mcrypt-1.0.3
+RUN pecl install mcrypt-1.0.4
 RUN docker-php-ext-enable mcrypt
 
 # wkhtmltopdf
@@ -78,7 +78,7 @@ RUN docker-php-ext-install -j$(nproc) zip
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Installing extensions
-RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath opcache
+RUN docker-php-ext-install pdo_mysql pdo_pgsql mbstring zip exif pcntl bcmath opcache
 RUN docker-php-ext-enable imagick
 
 # Installing composer
