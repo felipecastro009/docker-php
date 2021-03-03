@@ -59,7 +59,7 @@ RUN echo "xdebug.profiler_enable=0" >> /usr/local/etc/php/conf.d/docker-php-ext-
 RUN echo "xdebug.remote_log=\"/tmp/xdebug.log\"" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # install imagick
-RUN pecl install imagick
+RUN pecl install imagick-3.4.4
 
 # configure, install and enable all php packages
 RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp
