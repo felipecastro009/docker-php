@@ -59,23 +59,23 @@ RUN echo "xdebug.profiler_enable=0" >> /usr/local/etc/php/conf.d/docker-php-ext-
 RUN echo "xdebug.remote_log=\"/tmp/xdebug.log\"" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # configure, install and enable all php packages
-RUN docker-php-ext-install -j$(nproc) gd
-RUN docker-php-ext-install -j$(nproc) opcache
-RUN docker-php-ext-install -j$(nproc) pdo_mysql
-RUN docker-php-ext-install -j$(nproc) mysqli
-RUN docker-php-ext-install -j$(nproc) intl
-RUN docker-php-ext-install -j$(nproc) zip
+# RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp
+# RUN docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
+# RUN docker-php-ext-configure mysqli --with-mysqli=mysqlnd
+# RUN docker-php-ext-configure intl
 
-RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp
-RUN docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
-RUN docker-php-ext-configure mysqli --with-mysqli=mysqlnd
-RUN docker-php-ext-configure intl
+# RUN docker-php-ext-install -j$(nproc) gd
+# RUN docker-php-ext-install -j$(nproc) opcache
+# RUN docker-php-ext-install -j$(nproc) pdo_mysql
+# RUN docker-php-ext-install -j$(nproc) mysqli
+# RUN docker-php-ext-install -j$(nproc) intl
+# RUN docker-php-ext-install -j$(nproc) zip
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Installing extensions
-RUN docker-php-ext-install pdo_mysql pdo_pgsql mbstring zip exif pcntl bcmath opcache
+# # Installing extensions
+# RUN docker-php-ext-install pdo_mysql pdo_pgsql mbstring zip exif pcntl bcmath opcache
 
 # Installing composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
