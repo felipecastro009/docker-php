@@ -58,9 +58,6 @@ RUN echo "xdebug.remote_connect_back=0" >> /usr/local/etc/php/conf.d/docker-php-
 RUN echo "xdebug.profiler_enable=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN echo "xdebug.remote_log=\"/tmp/xdebug.log\"" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-# install imagick
-RUN pecl install imagick-3.4.4
-
 # configure, install and enable all php packages
 RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp
 RUN docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
@@ -79,7 +76,6 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Installing extensions
 RUN docker-php-ext-install pdo_mysql pdo_pgsql mbstring zip exif pcntl bcmath opcache
-RUN docker-php-ext-enable imagick
 
 # Installing composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
